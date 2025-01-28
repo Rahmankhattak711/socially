@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Poppins, DM_Serif_Text } from "next/font/google";
 import "./globals.css";
 import { ClerkProvider } from "@clerk/nextjs";
+import { ThemeProvider } from "@/components/ThemeProvider";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -31,7 +32,14 @@ export default function RootLayout({
         <body
           className={`${poppins.variable} ${dmSerifText.variable} antialiased`}
         >
-          {children}
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
+            {children}
+          </ThemeProvider>
         </body>
       </html>
     </ClerkProvider>
