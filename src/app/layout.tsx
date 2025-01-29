@@ -1,19 +1,14 @@
 import type { Metadata } from "next";
-import { Poppins, DM_Serif_Text } from "next/font/google";
+import { Poppins } from "next/font/google";
 import "./globals.css";
 import { ClerkProvider } from "@clerk/nextjs";
 import { ThemeProvider } from "@/components/ThemeProvider";
+import Navbar from "@/components/Navbar";
 
 const poppins = Poppins({
   subsets: ["latin"],
   weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
   variable: "--font-poppins",
-});
-
-const dmSerifText = DM_Serif_Text({
-  subsets: ["latin"],
-  weight: "400",
-  variable: "--font-dm-serif-text",
 });
 
 export const metadata: Metadata = {
@@ -28,9 +23,9 @@ export default function RootLayout({
 }>) {
   return (
     <ClerkProvider>
-      <html lang="en">
+      <html lang="en" suppressHydrationWarning>
         <body
-          className={`${poppins.variable} ${dmSerifText.variable} antialiased`}
+          className={`${poppins.variable} font-poppins antialiased`}
         >
           <ThemeProvider
             attribute="class"
@@ -38,7 +33,15 @@ export default function RootLayout({
             enableSystem
             disableTransitionOnChange
           >
-            {children}
+            <div className="min-h-screen">
+              <Navbar />
+              <main className="max-w-7xl max-autp px-8">
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
+                  <div className="hidden lg:block lg:col-span-3">sideBar</div>
+                  <div className="lg:col-span-9">{children}</div>
+                </div>
+              </main>
+            </div>
           </ThemeProvider>
         </body>
       </html>
