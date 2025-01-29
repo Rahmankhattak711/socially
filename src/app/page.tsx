@@ -1,11 +1,14 @@
+import CreatePost from "@/components/CreatePost";
+import SuggestedUser from "@/components/SuggestedUser";
+import {  currentUser } from "@clerk/nextjs/server";
 
-export default function Home() {
+export default async function Home() {
+  const user = await currentUser();
   return (
-    <div>
-      <div>
-        <h1 className="font-dmSerifText text-orange-500">
-          Welcome to Socially WEB App!
-        </h1>
+    <div className="grid grid-cols-1 lg:grid-cols-10 lg:gap-6">
+      <div className="lg:col-span-6">{user ? <CreatePost />: null}</div>
+      <div className="hidden lg:block lg:col-span-4 sticky top-20">
+        <SuggestedUser/>
       </div>
     </div>
   );
