@@ -4,6 +4,7 @@ import "./globals.css";
 import { ClerkProvider } from "@clerk/nextjs";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import Navbar from "@/components/Navbar";
+import Sidebar from "@/components/SideBar";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -24,9 +25,7 @@ export default function RootLayout({
   return (
     <ClerkProvider>
       <html lang="en" suppressHydrationWarning>
-        <body
-          className={`${poppins.variable} font-poppins antialiased`}
-        >
+        <body className={`${poppins.variable} font-poppins antialiased`}>
           <ThemeProvider
             attribute="class"
             defaultTheme="system"
@@ -35,9 +34,11 @@ export default function RootLayout({
           >
             <div className="min-h-screen">
               <Navbar />
-              <main className="max-w-7xl max-autp px-8">
+              <main className="max-w-7xl max-autp px-8 py-8">
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
-                  <div className="hidden lg:block lg:col-span-3">sideBar</div>
+                  <div className="hidden lg:block lg:col-span-3">
+                    <Sidebar />
+                  </div>
                   <div className="lg:col-span-9">{children}</div>
                 </div>
               </main>

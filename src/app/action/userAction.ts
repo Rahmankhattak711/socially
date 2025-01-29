@@ -29,3 +29,20 @@ export async function syncUser() {
     });
   } catch (error) {}
 }
+
+export async function userGetByClerkId(clerkId: string) {
+  return await prisma.user.findUnique({
+    where: {
+      clerkId,
+    },
+    include: {
+      _count: {
+        select: {
+          followers: true,
+          following: true,
+          posts: true,
+        },
+      },
+    },
+  });
+}
