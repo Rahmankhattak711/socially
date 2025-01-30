@@ -4,9 +4,8 @@ import { NextResponse } from "next/server";
 const publicPaths = createRouteMatcher([
   "/sign-in",
   "/sign-up",
-  "/sign-out",
   "/",
-  "/dashboard",
+  "/notifications",
 ]);
 
 export default clerkMiddleware((auth, req) => {
@@ -17,10 +16,9 @@ export default clerkMiddleware((auth, req) => {
   if (userId) {
     if (
       currentUrl.pathname === "/sign-in" ||
-      currentUrl.pathname === "/sign-up" ||
-      currentUrl.pathname === "/sign-out"
+      currentUrl.pathname === "/sign-up"
     ) {
-      return NextResponse.redirect(new URL("/dashboard", req.url));
+      return NextResponse.redirect(new URL("/", req.url));
     }
 
     return NextResponse.next();
