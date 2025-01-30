@@ -1,14 +1,30 @@
 import CreatePost from "@/components/CreatePost";
+import PostCard from "@/components/PostCard";
 import SuggestedUser from "@/components/SuggestedUser";
-import {  currentUser } from "@clerk/nextjs/server";
+import { currentUser } from "@clerk/nextjs/server";
+import { getDbUserId } from "./action/userAction";
+import { getPosts } from "./action/post.action";
 
 export default async function Home() {
   const user = await currentUser();
+  const post = await getPosts();
+  const dbUserId = await getDbUserId();
   return (
     <div className="grid grid-cols-1 lg:grid-cols-10 lg:gap-6">
-      <div className="lg:col-span-6">{user ? <CreatePost />: null}</div>
+      <div className="lg:col-span-6">
+        {user ? <CreatePost /> : null}
+
+        <div className="space-y-6">
+          {post.map((post) => (
+            <>
+              <PostCard key={post.id} post={post} userId={dbUserId} />
+            </>
+          ))}
+        </div>
+
+      </div>
       <div className="hidden lg:block lg:col-span-4 sticky top-20">
-        <SuggestedUser/>
+        <SuggestedUser />
       </div>
     </div>
   );
