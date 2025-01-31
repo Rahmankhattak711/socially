@@ -14,6 +14,7 @@ export default function FollowButton() {
       await toggleFollow( "clerkId");
     } catch (error) {
       toast.error("Failed to follow user");
+      console.error("Error following user:", error);
     } finally {
       setLoading(false);
     }

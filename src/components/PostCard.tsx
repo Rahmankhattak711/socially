@@ -12,6 +12,7 @@ import { HeartIcon, LogInIcon, MessageCircleIcon, SendIcon } from "lucide-react"
 import { Textarea } from "./ui/textarea";
 import { createComment, deletePost, getPosts, toggleLike } from "@/app/action/post.action";
 import { DeleteAlertDialog } from "./DeleteAlertDialog";
+import Image from "next/image";
 
 type Posts = Awaited<ReturnType<typeof getPosts>>;
 type Post = Posts[number];
@@ -110,7 +111,7 @@ function PostCard({ post, dbUserId }: { post: Post; dbUserId: string | null }) {
           {/* POST IMAGE */}
           {post.image && (
             <div className="rounded-lg overflow-hidden">
-              <img src={post.image} alt="Post content" className="w-full h-auto object-cover" />
+              <Image height={400} width={400} src={post.image} alt="Post content" className="w-full h-auto object-cover" />
             </div>
           )}
 

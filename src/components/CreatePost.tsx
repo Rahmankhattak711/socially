@@ -9,6 +9,7 @@ import { ImageIcon, Loader2Icon, SendIcon } from "lucide-react";
 import { Button } from "./ui/button";
 import toast from "react-hot-toast";
 import { createPost } from "@/app/action/post.action";
+import ImageUpload from "./ImageUpload";
 
 function CreatePost() {
   const { user } = useUser();
