@@ -2,12 +2,14 @@
   "name": "sociallywebapp",
   "version": "0.1.0",
   "private": true,
-  "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
-  },
+    "scripts": {
+      "dev": "next dev",
+      "build": "next build",
+      "start": "next start",
+      "lint": "next lint",
+      "type-check": "tsc --noEmit",
+      "clean": "rimraf .next"
+    },
   "dependencies": {
     "@clerk/nextjs": "^6.9.6",
     "@prisma/client": "^6.3.0",
@@ -39,8 +41,8 @@
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
-    "eslint": "^9.19.0",
-    "eslint-config-next": "14.2.15",
+    "eslint": "^8.57.1",
+    "eslint-config-next": "^15.1.6",
     "postcss": "^8",
     "prisma": "^6.3.0",
     "tailwindcss": "^3.4.1",
