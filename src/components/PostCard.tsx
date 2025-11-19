@@ -92,13 +92,15 @@ function PostCard({ post, dbUserId }: { post: Post; dbUserId: string | null }) {
             {/* POST HEADER & TEXT CONTENT */}
             <div className="flex-1 min-w-0">
               <div className="flex items-start justify-between">
-                <div className="flex flex-col sm:flex-row sm:items-center sm:space-x-2 truncate">
-                  <Link
+                <div className="flex flex-col truncate">
+                  <div>
+                    <Link
                     href={`/profile/${post.author.username}`}
                     className="font-semibold truncate"
                   >
                     {post.author.name}
                   </Link>
+                  </div>
                   <div className="flex items-center space-x-2 text-sm text-muted-foreground">
                     <Link href={`/profile/${post.author.username}`}>@{post.author.username}</Link>
                     <span>•</span>
