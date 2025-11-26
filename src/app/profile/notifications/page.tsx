@@ -11,7 +11,7 @@ import toast from "react-hot-toast";
 import {
   getNotifications,
   markNotificationsAsRead,
-} from "../action/notification.action";
+} from "../../action/notification.action";
 import Image from "next/image";
 
 type Notifications = Awaited<ReturnType<typeof getNotifications>>;
