@@ -54,7 +54,7 @@ export default async function ProfilePage({ params }: Props) {
     <div className="grid grid-cols-1 lg:grid-cols-10 lg:gap-6">
       <div className="lg:col-span-6">
         <div className="mb-6">
-          <div className="flex items-center gap-4 p-4 border rounded-md">
+          <div className="flex items-center gap-4 p-4 border rounded-xl">
             <Avatar className="w-24 h-24">
               <AvatarImage src={user.image ?? "/avatar.png"} />
             </Avatar>
