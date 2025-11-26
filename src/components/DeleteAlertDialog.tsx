@@ -1,39 +1,37 @@
 "use client";
 
-import { Loader2Icon, Trash2Icon } from "lucide-react";
-import { Button } from "@/components/ui/button";
 import {
   AlertDialog,
   AlertDialogAction,
   AlertDialogCancel,
   AlertDialogContent,
-  AlertDialogDescription,
   AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
+import { Button, buttonVariants } from "@/components/ui/button";
+import { Loader2Icon, Trash2Icon } from "lucide-react";
+import { useState } from "react";
 
 interface DeleteAlertDialogProps {
   isDeleting: boolean;
   onDelete: () => Promise<void>;
-  title?: string;
-  description?: string;
 }
 
 export function DeleteAlertDialog({
   isDeleting,
   onDelete,
-  title = "Delete Post",
-  description = "This action cannot be undone.",
 }: DeleteAlertDialogProps) {
+  const [confirmText, setConfirmText] = useState("");
+  const isConfirmed = confirmText.trim().toUpperCase() === "DELETE";
+
   return (
     <AlertDialog>
       <AlertDialogTrigger asChild>
         <Button
           variant="ghost"
-          size="sm"
-          className="text-muted-foreground hover:text-red-500 -mr-2"
+          size="icon"
+          className="text-muted-foreground hover:text-red-500"
+          aria-label="Delete post"
         >
           {isDeleting ? (
             <Loader2Icon className="size-4 animate-spin" />
@@ -42,18 +40,32 @@ export function DeleteAlertDialog({
           )}
         </Button>
       </AlertDialogTrigger>
+
       <AlertDialogContent>
-        <AlertDialogHeader>
-          <AlertDialogTitle>{title}</AlertDialogTitle>
-          <AlertDialogDescription>{description}</AlertDialogDescription>
-        </AlertDialogHeader>
+        <div className="mt-2">
+          <p className="text-sm text-muted-foreground">
+            To confirm, type <span className="font-medium">DELETE</span> below.
+          </p>
+
+          <input
+            value={confirmText}
+            onChange={(e) => setConfirmText(e.target.value)}
+            className="mt-3 w-full rounded-md border bg-background px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-ring"
+            placeholder="Type DELETE to confirm"
+            aria-label="Type DELETE to confirm deletion"
+          />
+        </div>
+
         <AlertDialogFooter>
           <AlertDialogCancel>Cancel</AlertDialogCancel>
           <AlertDialogAction
             onClick={onDelete}
-            className="bg-red-500 hover:bg-red-600"
-            disabled={isDeleting}
+            className={buttonVariants({ variant: "destructive" })}
+            disabled={!isConfirmed || isDeleting}
           >
+            {isDeleting ? (
+              <Loader2Icon className="size-4 animate-spin mr-2" />
+            ) : null}
             {isDeleting ? "Deleting..." : "Delete"}
           </AlertDialogAction>
         </AlertDialogFooter>
