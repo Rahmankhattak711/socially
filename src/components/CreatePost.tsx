@@ -49,7 +49,7 @@ function CreatePost() {
             </Avatar>
             <Textarea
               placeholder="What's on your mind?"
-              className="min-h-[100px] px-2 text-base  outline-none resize-none border-none"
+              className="min-h-[100px] bg-card px-2 text-base outline-none resize-none border-none"
               value={content}
               onChange={(e) => setContent(e.target.value)}
               disabled={isPosting}
@@ -61,7 +61,7 @@ function CreatePost() {
               <ImageUpload
                 endpoint="postImage"
                 value={imageUrl}
-                onChange={(url ) => {
+                onChange={(url) => {
                   setImageUrl(url);
                   if (!url) setShowImageUpload(false);
                 }}
@@ -73,9 +73,8 @@ function CreatePost() {
             <div className="flex space-x-2">
               <Button
                 type="button"
-                variant="ghost"
+                variant="outline"
                 size="sm"
-                className="text-muted-foreground hover:text-primary"
                 onClick={() => setShowImageUpload(!showImageUpload)}
                 disabled={isPosting}
               >
