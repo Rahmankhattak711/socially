@@ -30,7 +30,6 @@ export function DeleteAlertDialog({
         <Button
           variant="ghost"
           size="icon"
-          className="text-muted-foreground hover:text-red-500"
           aria-label="Delete post"
         >
           {isDeleting ? (

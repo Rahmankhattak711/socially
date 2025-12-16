@@ -26,6 +26,26 @@ export async function createPost(content: string, image: string) {
   }
 }
 
+export async function updatePost(postId: string, content: string) {
+  try {
+    const userId = await getDbUserId();
+    if (!userId) return;
+    const post = await prisma.post.update({
+      where: {
+        id: postId,
+      },
+      data: {
+        content,
+      },
+    });
+    revalidatePath("/"); 
+    return { success: true, post };
+  } catch (error) {
+    console.error("Failed to update post:", error);
+    return { success: false, error: "Failed to update post" };
+  }
+}
+
 export async function getPosts() {
   try {
     const posts = await prisma.post.findMany({
