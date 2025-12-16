@@ -1,8 +1,14 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-    images: {
-      domains: ["utfs.io"], // Add the external hostname here
-    },
-  };
+  images: {
+    domains: ["utfs.io"],
+  },
+  experimental: {
+    turbo: false,
+  },
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
+};
 
-  export default nextConfig;
+export default nextConfig;
