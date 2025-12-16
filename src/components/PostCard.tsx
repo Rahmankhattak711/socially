@@ -47,7 +47,6 @@ function PostCard({ post, dbUserId }: { post: Post; dbUserId: string | null }) {
   const [toggle, setToggle] = useState(false);
 
   const handleToggle = () => {
-    const edit = isEditing ? false : true;
     setToggle((prev) => !prev);
   };
 
@@ -125,6 +124,21 @@ function PostCard({ post, dbUserId }: { post: Post; dbUserId: string | null }) {
                 <AvatarImage src={post.author.image ?? "/avatar.png"} />
               </Avatar>
             </Link>
+
+            {
+              isEditing ? (
+                <div className="flex-1 min-w-0 sr-only">
+                  <Textarea
+                    value={editedContent}
+                    onChange={(e) => setEditedContent(e.target.value)}
+                  />
+                </div>
+              ) : (
+                <div className="flex-1 min-w-0 sr-only">
+                  <p className="text-sm text-muted-foreground">{post.content}</p>
+                </div>
+              )
+            }
 
             {/* POST HEADER & TEXT CONTENT */}
             <div className="flex-1 min-w-0">
