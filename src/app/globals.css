@@ -4,11 +4,10 @@
 
 @layer base {
   :root {
-    /* Light theme: white background with orange accents */
 
-    --background: 0 0% 100%; /* white */
+    --background: 40, 22%, 95%;
 
-    --foreground: 210 10% 12%; /* near-black text */
+    --foreground: 100%, 100%, 100%;
 
     --card: 0 0% 100%;
 
@@ -18,7 +17,7 @@
 
     --popover-foreground: 210 10% 12%;
 
-    --primary: 24 100% 52%; /* vivid orange */
+    --primary: 24 100% 52%;
 
     --primary-foreground: 0 0% 100%;
 
@@ -57,11 +56,10 @@
     --radius: 0.5rem;
   }
   .dark {
-    /* Dark theme: black background with orange accents */
 
     --background: 0 0% 0%;
 
-    --foreground: 210 10% 96%; /* light text */
+    --foreground: 210 10% 96%;
 
     --card: 0 0% 6%;
 
